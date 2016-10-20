@@ -1,0 +1,11 @@
+<launch>
+	<arg   name="gui" default="False" />
+        <param name="robot_description" textfile="$(find catbot_description)/urdf/diff_catbot.URDF"/>
+	<param name="use_gui" value="true" />
+	<node  name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher"/>
+	<node  name="rviz" pkg="rviz" type="rviz"/>
+        <node    name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" respawn="false" output="screen">
+            <param name="publish_frequency" type="double" value="50.0" />
+            <remap from="/joint_states" to="/catbot/joint_states" />
+        </node>
+</launch>

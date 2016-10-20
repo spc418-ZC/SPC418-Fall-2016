@@ -1,0 +1,33 @@
+<?xml version="1.0" ?>
+<robot name="imu_model" xmlns:xacro="http://ros.org/wiki/xacro">
+<xacro:macro name="imu_link" params="parent">
+    <link name="imu">
+        <inertial>
+            <mass value="0.003" />
+            <inertia
+                ixx="0.00001"
+                ixy="0"
+                ixz="0"
+                iyy="0.00001"
+                iyz="0"
+                izz="0.00001"/>
+        </inertial>
+    </link>
+    <joint name="imu_joint" type="fixed">
+        <parent link="${parent}"/>
+        <child  link="imu"/>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+    </joint>
+    <gazebo>
+        <plugin name="imu_controller" filename="libgazebo_ros_imu.so">
+            <alwaysOn>true</alwaysOn>
+            <updateRate>50.0</updateRate>
+            <bodyName>imu</bodyName>
+            <topicName>imu_data</topicName>
+            <gaussianNoise>2.89e-08</gaussianNoise>
+            <xyzOffsets>0 0 0</xyzOffsets>
+            <rpyOffsets>0 0 0</rpyOffsets>
+        </plugin>
+    </gazebo>
+</xacro:macro>
+</robot>

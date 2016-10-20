@@ -1,0 +1,4 @@
+<?xml version="1.0" ?>
+<robot name="four_wheeled_drive_plugin" xmlns:xacro="http://ros.org/wiki/xacro">
+
+</launch>

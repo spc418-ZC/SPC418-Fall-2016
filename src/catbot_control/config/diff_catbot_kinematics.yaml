@@ -1,0 +1,15 @@
+catbot:
+# Publish all joint states -----------------------------------
+  joint_state_controller:
+    type: joint_state_controller/JointStateController
+    publish_rate: 100
+
+  # Velocity Controllers ---------------------------------------
+  right_motor_controller:
+    type: velocity_controllers/JointVelocityController
+    joint: right_motor
+    pid: {p: 500.0, i: 0.3, d: 50.0}
+  left_motor_controller:
+    type: velocity_controllers/JointVelocityController
+    joint: left_motor
+    pid: {p: 500.0, i: 0.3, d: 50.0}

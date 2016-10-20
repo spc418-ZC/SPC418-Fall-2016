@@ -1,0 +1,10 @@
+<launch>
+    <arg name="paused" default="false"/>
+    <arg name="use_sim_time" default="true"/>
+    <arg name="gui" default="true"/>
+    <arg name="headless" default="false"/>
+    <arg name="debug" default="false"/>
+    <include file="$(find catbot_description)/launch/fourWD_catbot/fourWD_catbot_display.launch"/>
+    <node    name="spawn_model" pkg="gazebo_ros" type="spawn_model" args="-param robot_description -urdf -model fourWD_catbot" output="screen" />
+    <node    name="teleop_node" pkg="catbot_control" type="teleop_node"/>
+</launch>

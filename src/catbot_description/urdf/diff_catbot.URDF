@@ -1,0 +1,489 @@
+<robot name="diff_catbot">
+    <!-- This is a fictitious link, falling right below the center of mass of the robot, and acting as a projection of it on the ground.-->
+    <link name="base_footprint">
+      <inertial>
+        <mass value="0.0001"/>
+        <origin xyz="0 0 0"/>
+        <inertia ixx="0.0001" ixy="0.0" ixz="0.0" iyy="0.0001" iyz="0.0" izz="0.0001"/>
+      </inertial>
+    </link>
+    <!-- Joint to connect the fictitious link to the actual chassis of the robot -->
+    <joint name="base_footprint_joint" type="fixed">
+      <origin rpy="0 0 -1.570796327" xyz="0 0 0.125"/>
+      <parent link="base_footprint"/>
+      <child link="base_link"/>
+    </joint>
+    <!-- Actual chassis link of the robot -->
+    <link name="base_link">
+        <inertial>
+        <origin
+            xyz="0 0 0"
+            rpy="0 0 0" />
+        <mass
+            value="3" />
+        <inertia
+            ixx="0.0344425345253922"
+            ixy="0"
+            ixz="0"
+            iyy="0.0252767714510505"
+            iyz="-0.00237163573657069"
+            izz="0.0487445676935793" />
+        </inertial>
+        <visual>
+        <origin
+            xyz="0 0 0"
+            rpy="0 0 0" />
+        <geometry>
+            <mesh
+            filename="package://catbot_description/meshes/diff_catbot/base_link.STL" />
+        </geometry>
+        <material
+            name="">
+            <color
+            rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+        </material>
+        </visual>
+        <collision>
+        <origin
+            xyz="0 0 0"
+            rpy="0 0 0" />
+        <geometry>
+            <mesh
+            filename="package://catbot_description/meshes/diff_catbot/base_link.STL" />
+        </geometry>
+        </collision>
+    </link>
+    <!-- Right wheel link -->
+    <link name="right_wheel">
+        <inertial>
+        <origin
+            xyz="0 0 -0.019494"
+            rpy="0 0 0" />
+        <mass
+            value="2" />
+        <inertia
+            ixx="0.00017099"
+            ixy="0"
+            ixz="0"
+            iyy="0.00017099"
+            iyz="0"
+            izz="0.00031986" />
+        </inertial>
+        <visual>
+        <origin
+            xyz="0 0 0"
+            rpy="0 0 0" />
+        <geometry>
+            <mesh
+            filename="package://catbot_description/meshes/diff_catbot/right_wheel.STL" />
+        </geometry>
+        <material
+            name="">
+            <color
+            rgba="0.79216 0.81961 0.93333 1" />
+        </material>
+        </visual>
+        <collision>
+        <origin
+            xyz="0 0 0"
+            rpy="0 0 0" />
+        <geometry>
+            <mesh
+            filename="package://catbot_description/meshes/diff_catbot/right_wheel.STL" />
+        </geometry>
+        </collision>
+    </link>
+    <!-- Right wheel joint, this joint is commanded with velocity to cause the wheel to rotate -->
+    <joint name="right_motor"
+        type="continuous">
+        <origin
+        xyz="0.15697 -0.073269 -0.041165"
+        rpy="1.5708 0 -1.5708" />
+        <parent
+        link="base_link" />
+        <child
+        link="right_wheel" />
+        <axis
+        xyz="0 0 1" />
+        <limit
+        effort="100"
+        velocity="100" />
+        <dynamics
+        damping="0"
+        friction="0" />
+    </joint>
+    <!-- Left wheel link -->
+    <link name="left_wheel">
+        <inertial>
+        <origin
+            xyz="0 0 0.019494"
+            rpy="0 0 0" />
+        <mass
+            value="2" />
+        <inertia
+            ixx="0.00017099"
+            ixy="0"
+            ixz="0"
+            iyy="0.00017099"
+            iyz="0"
+            izz="0.00031986" />
+        </inertial>
+        <visual>
+        <origin
+            xyz="0 0 0"
+            rpy="0 0 0" />
+        <geometry>
+            <mesh
+            filename="package://catbot_description/meshes/diff_catbot/left_wheel.STL" />
+        </geometry>
+        <material
+            name="">
+            <color
+            rgba="0.79216 0.81961 0.93333 1" />
+        </material>
+        </visual>
+        <collision>
+        <origin
+            xyz="0 0 0"
+            rpy="0 0 0" />
+        <geometry>
+            <mesh
+            filename="package://catbot_description/meshes/diff_catbot/left_wheel.STL" />
+        </geometry>
+        </collision>
+    </link>
+    <!-- Left wheel joint, this joint is commanded with velocity to cause the wheel to rotate -->
+    <joint name="left_motor"
+        type="continuous">
+        <origin
+        xyz="-0.15697 -0.073269 -0.041165"
+        rpy="1.5708 0 -1.5708" />
+        <parent
+        link="base_link" />
+        <child
+        link="left_wheel" />
+        <axis
+        xyz="0 0 1" />
+        <limit
+        effort="100"
+        velocity="100" />
+        <dynamics
+        damping="0"
+        friction="0" />
+    </joint>
+    <!-- Caster Wheel Joint and Link -->
+    <joint name="ball_and_socket"
+        type="fixed">
+        <origin
+        xyz="0 0.20508 -0.11627"
+        rpy="1.5708 0 -1.5708" />
+        <parent
+        link="base_link" />
+        <child
+        link="caster_wheel" />
+    </joint>
+    <link name="caster_wheel">
+        <inertial>
+        <origin
+            xyz="0 0 0"
+            rpy="0 0 0" />
+        <mass
+            value="0.0035914" />
+        <inertia
+            ixx="1.2965E-07"
+            ixy="0"
+            ixz="0"
+            iyy="1.2965E-07"
+            iyz="0"
+            izz="1.2965E-07" />
+        </inertial>
+        <visual>
+        <origin
+            xyz="0 0 0"
+            rpy="0 0 0" />
+        <geometry>
+            <mesh
+            filename="package://catbot_description/meshes/diff_catbot/caster_wheel.STL" />
+        </geometry>
+        <material
+            name="">
+            <color
+            rgba="0.79216 0.81961 0.93333 1" />
+        </material>
+        </visual>
+        <collision>
+        <origin
+            xyz="0 0 0"
+            rpy="0 0 0" />
+        <geometry>
+            <mesh
+            filename="package://catbot_description/meshes/diff_catbot/caster_wheel.STL" />
+        </geometry>
+        </collision>
+    </link>
+    <!-- Camera Link -->
+    <link name="camera">
+        <inertial>
+        <origin
+            xyz="0 0 0"
+            rpy="0 0 0" />
+        <mass
+            value="0.028578" />
+        <inertia
+            ixx="2.1737E-05"
+            ixy="0"
+            ixz="0"
+            iyy="2.037E-06"
+            iyz="0"
+            izz="2.0659E-05" />
+        </inertial>
+        <visual>
+        <origin
+            xyz="0 0 0"
+            rpy="0 0 0" />
+        <geometry>
+            <mesh
+            filename="package://catbot_description/meshes/diff_catbot/camera.STL" />
+        </geometry>
+        <material
+            name="">
+            <color
+            rgba="0.79216 0.81961 0.93333 1" />
+        </material>
+        </visual>
+        <collision>
+        <origin
+            xyz="0 0 0"
+            rpy="0 0 0" />
+        <geometry>
+            <mesh
+            filename="package://catbot_description/meshes/diff_catbot/camera.STL" />
+        </geometry>
+        </collision>
+    </link>
+    <!-- Camera Joint to connect the camera to the chassis -->
+    <joint name="camera_joint"
+        type="fixed">
+        <origin
+        xyz="0 0.27409 -0.039719"
+        rpy="0 0 1.5708" />
+        <parent
+        link="base_link" />
+        <child
+        link="camera" />
+        <axis
+        xyz="0 0 0" />
+    </joint>
+    <!-- Laser Scanner Link -->
+    <link name="laser_scanner">
+        <inertial>
+        <origin
+            xyz="0 0 0"
+            rpy="0 0 0" />
+        <mass
+            value="0.6525" />
+        <inertia
+            ixx="0.0011739"
+            ixy="0"
+            ixz="0"
+            iyy="0.00060212"
+            iyz="0"
+            izz="0.0015305" />
+        </inertial>
+        <visual>
+        <origin
+            xyz="0 0 0"
+            rpy="0 0 0" />
+        <geometry>
+            <mesh
+            filename="package://catbot_description/meshes/diff_catbot/laser_scanner.STL" />
+        </geometry>
+        <material
+            name="">
+            <color
+            rgba="0.79216 0.81961 0.93333 1" />
+        </material>
+        </visual>
+        <collision>
+        <origin
+            xyz="0 0 0"
+            rpy="0 0 0" />
+        <geometry>
+            <mesh
+            filename="package://catbot_description/meshes/diff_catbot/laser_scanner.STL" />
+        </geometry>
+        </collision>
+    </link>
+    <!-- Laser Scanner Joint to connect the laser scanner to the chassis -->
+    <joint name="laser_scanner_joint"
+        type="fixed">
+        <origin
+        xyz="0 0.026147 0.11309"
+        rpy="0 0 1.5708" />
+        <parent
+        link="base_link" />
+        <child
+        link="laser_scanner" />
+        <axis
+        xyz="0 0 0" />
+    </joint>
+
+    <transmission name="left_motor_transmission">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="left_motor">
+        <hardwareInterface>EffortJointInterface</hardwareInterface>
+      </joint>
+      <actuator name="left_joint_motor">
+        <hardwareInterface>EffortJointInterface</hardwareInterface>
+        <mechanicalReduction>1</mechanicalReduction>
+      </actuator>
+    </transmission>
+    <transmission name="right_motor_transmission">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="right_motor">
+        <hardwareInterface>EffortJointInterface</hardwareInterface>
+      </joint>
+      <actuator name="right_joint_motor">
+        <hardwareInterface>EffortJointInterface</hardwareInterface>
+        <mechanicalReduction>1</mechanicalReduction>
+      </actuator>
+    </transmission>
+
+    <gazebo reference="base_footprint">
+      <turnGravityOff>false</turnGravityOff>
+    </gazebo>
+    <gazebo reference="left_wheel">
+        <mu1 value="50"/>
+        <mu2 value="50"/>
+        <kp  value="10000000.0" />
+        <kd  value="1.0" />
+        <fdir1 value="1 0 0"/>
+        <material>Gazebo/Black</material>
+        <turnGravityOff>false</turnGravityOff>
+    </gazebo>
+    <gazebo reference="right_wheel">
+        <mu1 value="50"/>
+        <mu2 value="50"/>
+        <kp  value="10000000.0" />
+        <kd  value="1.0" />
+        <fdir1 value="1 0 0"/>
+        <material>Gazebo/Black</material>
+        <turnGravityOff>false</turnGravityOff>
+    </gazebo>
+    <gazebo reference="base_link">
+            <material> Gazebo/Red </material>
+    </gazebo>
+    <gazebo reference="camera">
+        <material> Gazebo/Blue </material>
+    </gazebo>
+    <gazebo reference="laser_scanner">
+        <material> Gazebo/Orange </material>
+    </gazebo>
+    <!-- Loading gazebo-ros-control plugin -->
+    <gazebo>
+            <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+                    <robotNamespace>/catbot</robotNamespace>
+                    <controlPeriod> 0.01 </controlPeriod>
+            </plugin>
+    </gazebo>
+    <!-- Loading gazebo sensor (camera) plugin and connecting it to the camera link -->
+    <gazebo reference="camera">
+        <sensor type="camera" name="front_camera">
+          <update_rate>30.0</update_rate>
+          <camera name="front_camera">
+            <horizontal_fov>1.3962634</horizontal_fov>
+            <image>
+              <width>800</width>
+              <height>600</height>
+              <format>R8G8B8</format>
+            </image>
+            <clip>
+              <near>0.02</near>
+              <far>300</far>
+            </clip>
+            <noise>
+              <type>gaussian</type>
+              <!-- Noise is sampled independently per pixel on each frame.
+                   That pixel's noise value is added to each of its color
+                   channels, which at that point lie in the range [0,1]. -->
+              <mean>0.0</mean>
+              <stddev>0.007</stddev>
+            </noise>
+          </camera>
+          <plugin name="camera_controller" filename="libgazebo_ros_camera.so">
+            <alwaysOn>true</alwaysOn>
+            <updateRate>30.0</updateRate>
+            <cameraName>catbot/front_camera</cameraName>
+            <imageTopicName>image_raw</imageTopicName>
+            <cameraInfoTopicName>camera_info</cameraInfoTopicName>
+            <frameName>camera</frameName>
+            <hackBaseline>0.07</hackBaseline>
+            <distortionK1>0.0</distortionK1>
+            <distortionK2>0.0</distortionK2>
+            <distortionK3>0.0</distortionK3>
+            <distortionT1>0.0</distortionT1>
+            <distortionT2>0.0</distortionT2>
+          </plugin>
+        </sensor>
+    </gazebo>
+    <!-- Loading gazebo sensor (laser scanner) plugin and connecting it to the laser scanner link -->
+    <gazebo reference="laser_scanner">
+      <sensor type="ray" name="head_hokuyo_sensor">
+        <pose>0 0 0 0 0 0</pose>
+        <visualize>false</visualize>
+        <update_rate>40</update_rate>
+        <ray>
+          <scan>
+            <horizontal>
+              <samples>720</samples>
+              <resolution>1</resolution>
+              <min_angle>-1.570796</min_angle>
+              <max_angle>1.570796</max_angle>
+            </horizontal>
+          </scan>
+          <range>
+            <min>0.10</min>
+            <max>30.0</max>
+            <resolution>0.01</resolution>
+          </range>
+          <noise>
+            <type>gaussian</type>
+            <!-- Noise parameters based on published spec for Hokuyo laser
+                 achieving "+-30mm" accuracy at range < 10m.  A mean of 0.0m and
+                 stddev of 0.01m will put 99.7% of samples within 0.03m of the true
+                 reading. -->
+            <mean>0.0</mean>
+            <stddev>0.01</stddev>
+          </noise>
+        </ray>
+        <plugin name="gazebo_ros_head_hokuyo_controller" filename="libgazebo_ros_laser.so">
+          <topicName>/diff_catbot/laser/scan</topicName>
+          <frameName>laser_scanner</frameName>
+        </plugin>
+      </sensor>
+    </gazebo>
+    <gazebo>
+        <plugin name="differential_drive_controller" filename="libgazebo_ros_diff_drive.so">
+            <rosDebugLevel> Debug </rosDebugLevel>
+            <publishWheelTF>true</publishWheelTF>
+            <robotNameSpace>/</robotNameSpace>
+            <publishTF>1</publishTF>
+            <publishWheelJointState>true</publishWheelJointState>
+            <alwaysOn>true</alwaysOn>
+            <updateRate>100.0</updateRate>
+            <leftJoint>left_motor</leftJoint>
+            <rightJoint>right_motor</rightJoint>
+            <wheelSeparation>0.353</wheelSeparation>
+            <wheelDiameter>0.164</wheelDiameter>
+            <broadcastTF>1</broadcastTF>
+            <wheelTorque>30</wheelTorque>
+            <wheelAcceleration>2.8</wheelAcceleration>
+            <commandTopic>catbot/cmd_vel</commandTopic>
+            <odometryFrame>catbot/odom</odometryFrame>
+            <odometryTopic>catbot/odom</odometryTopic>
+            <robotBaseFrame>base_footprint</robotBaseFrame>
+            <legacyMode>false</legacyMode>
+            <odometrySource>encoder</odometrySource>
+        </plugin>
+    </gazebo>
+</robot>

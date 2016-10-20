@@ -1,0 +1,15 @@
+<launch>
+        <arg name="model" />
+        <!-- Parsing xacro and setting robot_description parameter -->
+        <param name="robot_description" command="rosrun xacro xacro $(find catbot_description)/urdf/fourWD_catbot.urdf.xacro" />
+        <!-- Setting gui parameter to true for display joint slider -->
+        <param name="use_gui" value="false"/>
+        <!-- Starting Joint state publisher node which will publish the joint values -->
+        <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" />
+        <!-- Starting robot state publish which will publish tf -->
+        <node    name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" respawn="false" output="screen">
+            <param name="publish_frequency" type="double" value="50.0" />
+            <remap from="/joint_states" to="/catbot/joint_states" />
+        </node>
+        <node name="rviz" pkg="rviz" type="rviz"/>
+</launch>
