@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<Workspace>
+    <WatchDirectories>
+        <Directory>src</Directory>
+    </WatchDirectories>
+    <IncludePaths>
+        <Directory>/home/mahmoud/SPC418-Fall-2016/src/catbot_control/include</Directory>
+        <Directory>/home/mahmoud/SPC418-Fall-2016/src/catbot_gazebo_plugins/include</Directory>
+        <Directory>/home/mahmoud/SPC418-Fall-2016/src/catbot_description/urdf/include</Directory>
+        <Directory>/usr/src/gtest</Directory>
+        <Directory>/usr/src/gtest/include</Directory>
+        <Directory>/opt/ros/kinetic/include</Directory>
+        <Directory>/usr/include/OGRE</Directory>
+        <Directory>/usr/include/OGRE/Paging</Directory>
+        <Directory>/usr/include/OGRE/Terrain</Directory>
+        <Directory>/usr/include/gazebo-7</Directory>
+        <Directory>/usr/include/ignition/math2</Directory>
+        <Directory>/usr/include/sdformat-4.0</Directory>
+    </IncludePaths>
+</Workspace>
