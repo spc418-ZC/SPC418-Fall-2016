@@ -1,0 +1,23 @@
+<launch>
+        <arg name="rviz_gui" default="False" />
+        <arg name="paused" default="false"/>
+        <arg name="use_sim_time" default="true"/>
+        <arg name="gazebo_gui" default="true"/>
+        <arg name="headless" default="false"/>
+        <arg name="debug" default="false"/>
+
+        <param name="robot_description" textfile="$(find catbot_description)/urdf/diff_catbot_perception.urdf"/>
+        <param name="use_gui" value="$(arg rviz_gui)" />
+
+        <rosparam file="$(find catbot_control)/config/diff_catbot_kinematics.yaml" command="load"/>
+        <include file="$(find catbot_localization)/launch/catbot_world.launch" />
+
+        <node name="spawn_model" pkg="gazebo_ros" type="spawn_model" args="-param robot_description -urdf -model catbot" output="screen" />
+        <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false" output="screen" ns="/catbot" args="left_motor_controller right_motor_controller joint_state_controller"/>
+        <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" respawn="false" output="screen">
+                <remap from="/joint_states" to="/catbot/joint_states" />
+        </node>
+        <node name="rviz" pkg="rviz" type="rviz"/>
+        <node name="kinematic_model_teleop" pkg="catbot_control" type="kinematic_model" output="screen"/>
+        <node name="encoder" pkg="catbot_control" type = "encoder" output="screen"/>
+</launch>

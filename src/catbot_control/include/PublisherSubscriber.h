@@ -3,7 +3,7 @@
 
 #include <ros/ros.h>
 #include <string>
-
+#include <tf/transform_broadcaster.h>
 
 template<typename PublishT,typename SubscribeT>
 class PublisherSubscriber
@@ -21,6 +21,7 @@ private:
   ros::Subscriber subscriberObject;
   ros::Publisher  publisherObject;
   ros::NodeHandle nH;
+  tf::TransformBroadcaster tf_br;
 };
 
 #endif
