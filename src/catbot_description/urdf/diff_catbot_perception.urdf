@@ -257,14 +257,15 @@
         <gazebo>
                 <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
                         <robotNamespace>/catbot</robotNamespace>
-                        <controlPeriod> 0.001 </controlPeriod>
+                        <controlPeriod> 0.01 </controlPeriod>
                 </plugin>
         </gazebo>
 
         <gazebo reference = "camera" >
-                <sensor type="camera" name = "front_camera">
-                        <update_rate>30.0</update_rate>
-                        <camera name="head">
+                <sensor type="multicamera" name = "front_camera">
+                        <update_rate>20.0</update_rate>
+                        <camera name="right">
+                                <pose> 0 -0.09 0 0 0 0 </pose>
                                 <horizontal_fov>1.396</horizontal_fov>
                                 <image>
                                         <width>860</width>
@@ -281,7 +282,25 @@
                                         <stddev>0.007</stddev>
                                 </noise>
                         </camera>
-                        <plugin name="camera_controller" filename="libgazebo_ros_camera.so">
+                        <camera name="left">
+                                <pose> 0 0.09 0 0 0 0 </pose>
+                                <horizontal_fov>1.396</horizontal_fov>
+                                <image>
+                                        <width>860</width>
+                                        <height>640</height>
+                                        <format>R8G8B8</format>
+                                </image>
+                                <clip>
+                                        <near>0.02</near>
+                                        <far>60</far>
+                                </clip>
+                                <noise>
+                                        <type>gaussian</type>
+                                        <mean>0.0</mean>
+                                        <stddev>0.007</stddev>
+                                </noise>
+                        </camera>
+                        <plugin name="stereo_camera_controller" filename="libgazebo_ros_multicamera.so">
                                 <alwaysOn>true</alwaysOn>
                                 <cameraName>catbot/front_camera</cameraName>
                                 <imageTopicName>image_raw</imageTopicName>
@@ -300,8 +319,8 @@
         <gazebo reference="laser_scanner">
                 <sensor type="ray" name="head_hokuyo_sensor">
                         <pose>0 0 0 0 0 0</pose>
-                        <visualize>true</visualize>
-                        <update_rate>30.0</update_rate>
+                        <visualize>false</visualize>
+                        <update_rate>20.0</update_rate>
                         <ray>
                                 <scan>
                                         <horizontal>
@@ -312,8 +331,8 @@
                                         </horizontal>
                                 </scan>
                                 <range>
-                                        <min>0.10</min>
-                                        <max>30.0</max>
+                                        <min>0.1</min>
+                                        <max>20.0</max>
                                         <resolution>0.01</resolution>
                                 </range>
                                 <noise>
@@ -333,21 +352,12 @@
         <gazebo>
             <plugin name="imu_controller" filename="libgazebo_ros_imu.so">
                 <alwaysOn>true</alwaysOn>
-                <updateRate>50.0</updateRate>
+                <updateRate>20.0</updateRate>
                 <bodyName>base_footprint</bodyName>
                 <topicName>/catbot/imu_data</topicName>
                 <gaussianNoise>2.89e-08</gaussianNoise>
                 <xyzOffsets>0 0 0</xyzOffsets>
                 <rpyOffsets>0 0 0</rpyOffsets>
             </plugin>
-        </gazebo>
-
-        <gazebo>
-                <plugin name="ground_truth" filename="libgazebo_ros_p3d.so">
-                        <frameName>base_footprint</frameName>
-                        <bodyName>base_footprint</bodyName>
-                        <topicName>/catbot/ground_truth</topicName>
-                        <updateRate>30.0</updateRate>
-                </plugin>
         </gazebo>
 </robot>

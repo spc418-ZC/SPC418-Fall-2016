@@ -19,9 +19,9 @@
         </node>
         <node name="rviz" pkg="rviz" type="rviz"/>
         <node name="kinematic_model_teleop" pkg="catbot_control" type="kinematic_model" output="screen"/>
-        <!--<node name="encoder" pkg="catbot_control" type = "encoder" output="screen"/> -->
-        <node name="stereo_image_proc" pkg="stereo_image_proc" type="stereo_image_proc" ns="/catbot/front_camera" output="screen" />
-        <node name="stereo_odometer" pkg="viso2_ros" type="stereo_odometer" output="screen" args="stereo:=narrow_stereo image:=image_rect"/>
         <node name="ground_truth" pkg="catbot_localization" type="ground_truth" output="screen" />
-        <node name="vodometry_path_generator" pkg="catbot_localization" type="vodometry_path_generator" />
+        <node name="ground_truth_pose_generator" pkg="catbot_localization" type = "ground_truth_pose_generator" />
+        <node name="ground_truth_path_generator" pkg="catbot_localization" type = "ground_truth_path_generator" />
+        <node name="odometry_pose_generator" pkg="catbot_localization" type = "odometry_pose_generator" />
+        <node name="odometry_path_generator" pkg="catbot_localization" type = "odometry_path_generator" />
 </launch>

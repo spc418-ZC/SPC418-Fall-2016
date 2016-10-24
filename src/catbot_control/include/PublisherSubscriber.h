@@ -9,6 +9,7 @@ template<typename PublishT,typename SubscribeT>
 class PublisherSubscriber
 {
 public:
+  PublisherSubscriber() {}
   PublisherSubscriber(std::string publishTopicName, std::string subscribeTopicName, int queueSize)
   {
     publisherObject  = nH.advertise<PublishT>(publishTopicName,queueSize);
@@ -16,7 +17,7 @@ public:
   }
   void subscriberCallback(const typename SubscribeT::ConstPtr& recievedMsg);
 
-private:
+protected:
 
   ros::Subscriber subscriberObject;
   ros::Publisher  publisherObject;
