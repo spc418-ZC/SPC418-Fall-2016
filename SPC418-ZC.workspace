@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<Workspace>
+    <WatchDirectories>
+        <Directory>src</Directory>
+    </WatchDirectories>
+    <IncludePaths>
+        <Directory>/home/mahmoud/SPC418-Fall-2016/src/catbot_control/include</Directory>
+        <Directory>/home/mahmoud/SPC418-Fall-2016/src/catbot_localization/include</Directory>
+        <Directory>/home/mahmoud/SPC418-Fall-2016/src/catbot_description/urdf/include</Directory>
+        <Directory>/usr/src/gtest</Directory>
+        <Directory>/usr/src/gtest/include</Directory>
+        <Directory>/opt/ros/kinetic/include</Directory>
+    </IncludePaths>
+</Workspace>

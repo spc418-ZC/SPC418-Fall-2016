@@ -155,8 +155,8 @@
         </link>
         <!-- Camera Joint to connect the camera to the chassis -->
         <joint name="camera_joint" type="fixed">
-                <origin xyz="0 0.27409 -0.039719" rpy="0 0 1.5708" />
-                <parent link="base_link" />
+                <origin xyz="0.27409 0 0.085281" rpy="-1.570796327 0 -1.570796327" />
+                <parent link="base_footprint" />
                 <child link="camera" />
         </joint>
         <!-- Laser Scanner Link -->
@@ -265,7 +265,7 @@
                 <sensor type="multicamera" name = "front_camera">
                         <update_rate>20.0</update_rate>
                         <camera name="right">
-                                <pose> 0 -0.1 0 0 0 0 </pose>
+                                <pose> 0 -0.1 0 0 -1.570796327 1.570796327</pose>
                                 <horizontal_fov>1.396</horizontal_fov>
                                 <image>
                                         <width>860</width>
@@ -283,7 +283,7 @@
                                 </noise>
                         </camera>
                         <camera name="left">
-                                <pose> 0 0.1 0 0 0 0 </pose>
+                                <pose> 0 0.1 0 0 -1.570796327 1.570796327</pose>
                                 <horizontal_fov>1.396</horizontal_fov>
                                 <image>
                                         <width>860</width>

@@ -20,23 +20,23 @@
         <node name="rviz" pkg="rviz" type="rviz"/>
         <node name="kinematic_model_teleop" pkg="catbot_control" type="kinematic_model" output="screen"/>
         <node name="stereo_image_proc" pkg="stereo_image_proc" type="stereo_image_proc" ns="/catbot/front_camera" output="screen" />
-        <node name="stereo_odometer" pkg="viso2_ros" type="stereo_odometer" output="screen" args="stereo:=narrow_stereo image:=image_rect">
+        <node name="stereo_odometer" pkg="viso2_ros" type="stereo_odometer" output="screen" args="stereo:=/catbot/front_camera  image:=image_rect_color">
                 <param name="odom_frame_id" value= "visual_odom" />
+                <param name="sensor_frame_id" value= "camera" />
                 <param name="base_link_frame_id" value= "base_footprint" />
-                <param name="max_features" value="2" />
+                <param name="max_features" value="5" />
                 <param name="bucket_width" value="50" />
                 <param name="bucket_height" value="50" />
                 <param name="nms_tau" value="20"/>
-                <param name="match_binsize" value="20"/>
-                <param name="match_radius" value="400" />
+                <param name="match_binsize" value="10"/>
+                <param name="match_radius" value="200" />
                 <param name="match_disp_tolerance" value="2" />
                 <param name="outlier_disp_tolerance" value="5" />
                 <param name="outlier_flow_tolerance" value="5" />
                 <param name="refinement" value="2" />
                 <param name="ransac_iters" value="1000" />
-                <param name="refinement" value="2" />
-                <param name="refinement" value="2" />
-                <param name="refinement" value="2" />
+                <param name="approximate_sync" value="True" />
+                <param name="queue_size" value="15" />
         </node>
         <node name="ground_truth" pkg="catbot_localization" type="ground_truth" output="screen" />
         <node name="vodometry_path_generator" pkg="catbot_localization" type="vodometry_path_generator" />

@@ -102,7 +102,7 @@ int main(int argc, char **argv)
       {
         if ((nominal_angular_vel == 0) || (nominal_angular_vel < 0))
         {
-          nominal_angular_vel = 0.20;
+          nominal_angular_vel = 0.05;
         }
         else
         {
@@ -124,7 +124,7 @@ int main(int argc, char **argv)
       {
         if ((nominal_angular_vel == 0) || (nominal_angular_vel > 0))
         {
-          nominal_angular_vel = -0.2;
+          nominal_angular_vel = -0.05;
         }
         else
         {
@@ -174,6 +174,13 @@ int main(int argc, char **argv)
         }
         nominal_linear_vel  = (left_motor_command + right_motor_command) * 0.5;
         nominal_angular_vel = (right_motor_command - left_motor_command) * 0.314;
+        break;
+      }
+      default:
+      {
+//        nominal_angular_vel = 0.00005 * nominal_angular_vel;
+//        right_motor_command = nominal_linear_vel + nominal_angular_vel * 1.5923;
+//        left_motor_command  = nominal_linear_vel - nominal_angular_vel * 1.5923;
         break;
       }
     }
