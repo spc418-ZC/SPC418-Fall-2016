@@ -6,9 +6,9 @@
     <xacro:include filename="$(find catbot_description)/urdf/include/imu.urdf.xacro" />
 
     <property name="base_width"  value = "0.40"/>
-    <property name="base_length" value = "0.60"/>
+    <property name="base_length" value = "0.40"/>
     <property name="base_height" value = "0.10"/>
-    <property name="base_mass"   value = "5"/>
+    <property name="base_mass"   value = "2"/>
 
     <link name="base_footprint">
         <inertial>
@@ -69,35 +69,9 @@
     <camera_link parent="base_link" x="${(base_length+0.05)/2}" y = "0" z="0" r = "0" p ="0" yaw = "0"/>
     <imu_link parent="base_link" />
 
-    <!--<gazebo>
-        <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
-          <robotNamespace>/fourWD_catbot</robotNamespace>
-        </plugin>
-    </gazebo> -->
     <gazebo>
-        <plugin name="differential_drive_controller" filename="libgazebo_ros_four_wheeled_drive.so">
-            <rosDebugLevel> Debug </rosDebugLevel>
-            <publishWheelTF>true</publishWheelTF>
-            <robotNameSpace>/fourWD_catbot</robotNameSpace>
-            <publishTF>1</publishTF>
-            <publishWheelJointState>true</publishWheelJointState>
-            <alwaysOn>true</alwaysOn>
-            <updateRate>50</updateRate>
-            <frontLeftJoint>front_left_wheel_joint</frontLeftJoint>
-            <frontRightJoint>front_right_wheel_joint</frontRightJoint>
-            <backLeftJoint>back_left_wheel_joint</backLeftJoint>
-            <backRightJoint>back_right_wheel_joint</backRightJoint>
-            <wheelSeparation>0.4</wheelSeparation>
-            <wheelDiameter>0.2</wheelDiameter>
-            <broadcastTF>1</broadcastTF>
-            <wheelTorque>30</wheelTorque>
-            <wheelAcceleration>9.8</wheelAcceleration>
-            <commandTopic>catbot/cmd_vel</commandTopic>
-            <odometryFrame>catbot/odom</odometryFrame>
-            <odometryTopic>catbot/odom</odometryTopic>
-            <robotBaseFrame>base_footprint</robotBaseFrame>
-            <legacyMode>true</legacyMode>
-            <odometrySource>encoder</odometrySource>
+        <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+          <robotNamespace>/catbot</robotNamespace>
         </plugin>
     </gazebo>
 </robot>

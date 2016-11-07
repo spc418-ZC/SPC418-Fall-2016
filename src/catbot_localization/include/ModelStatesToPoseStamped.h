@@ -12,11 +12,12 @@ PublisherSubscriber<geometry_msgs::PoseStamped,gazebo_msgs::ModelStates>::Publis
 class PoseGenerator : protected PublisherSubscriber<geometry_msgs::PoseStamped,gazebo_msgs::ModelStates>
 {
 public:
-  PoseGenerator(std::string publishTopicName, std::string subscribeTopicName, int queueSize, std::string frame_name)
+  PoseGenerator(std::string publishTopicName, std::string subscribeTopicName, int queueSize, std::string frame_name, std::string model)
   {
     publisherObject  = nH.advertise<geometry_msgs::PoseStamped>(publishTopicName,queueSize);
     subscriberObject = nH.subscribe<gazebo_msgs::ModelStates>(subscribeTopicName,queueSize,&PoseGenerator::subscriberCallback,this);
     frame_id         = frame_name;
+    model_name       = model;
   }
 
   void subscriberCallback(const gazebo_msgs::ModelStates::ConstPtr& receivedMsg)
@@ -25,7 +26,7 @@ public:
 
     for(size_t i = 0; i < receivedMsg->name.size(); ++i)
     {
-      if (receivedMsg->name[i]=="catbot")
+      if (receivedMsg->name[i]== model_name)
       {
         poseMsg.pose  = receivedMsg->pose [i];
       }
@@ -38,6 +39,7 @@ public:
   }
 protected:
   std::string frame_id;
+  std::string model_name;
 };
 
 

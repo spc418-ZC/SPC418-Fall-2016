@@ -9,7 +9,7 @@
   <!-- Wheels -->
   <property name="wheel_radius" value="0.10" />
   <property name="wheel_height" value="0.07" />
-  <property name="wheel_mass" value="0.5" /> <!-- in kg-->
+  <property name="wheel_mass" value="0.150" /> <!-- in kg-->
 
   <property name="base_x_origin_to_wheel_origin" value="0.25" />
   <property name="base_y_origin_to_wheel_origin" value="0.3" />
@@ -44,11 +44,11 @@
     </link>
 
     <gazebo reference="${fb}_${lr}_wheel">
-        <kp value="100000000.0"/>
-        <kd value="1"/>
+        <kp value="100000.0"/>
+        <kd value="100"/>
         <minDepth value="0.005"/>
-        <mu1 value="1"/> <!-- 2.0 -->
-        <mu2 value="1"/> <!-- 0.5 -->
+        <mu1 value="100"/>
+        <mu2 value="100"/>
         <fdir1 value="1 0 0"/>
         <material>Gazebo/Black</material>
         <turnGravityOff>false</turnGravityOff>
@@ -67,10 +67,10 @@
     <transmission name="${fb}_${lr}_wheel_joint_trans">
       <type>transmission_interface/SimpleTransmission</type>
       <joint name="${fb}_${lr}_wheel_joint">
-           <hardwareInterface>EffortJointInterface</hardwareInterface>
+           <hardwareInterface>VelocityJointInterface</hardwareInterface>
       </joint>
       <actuator name="${fb}_${lr}_wheel_joint_motor">
-        <hardwareInterface>EffortJointInterface</hardwareInterface>
+        <hardwareInterface>VelocityJointInterface</hardwareInterface>
         <mechanicalReduction>1</mechanicalReduction>
         <motorTorqueConstant>1</motorTorqueConstant>
       </actuator>

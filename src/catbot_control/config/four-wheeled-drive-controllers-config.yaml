@@ -1,0 +1,24 @@
+catbot:
+    joint_state_controller:
+        type: joint_state_controller/JointStateController
+        publish_rate: 100
+
+    front_left_controller:
+        type: velocity_controllers/JointVelocityController
+        joint: front_left_wheel_joint
+        pid: {p : 100, i : 0.1 , d : 10}
+
+    front_right_controller:
+        type: velocity_controllers/JointVelocityController
+        joint: front_right_wheel_joint
+        pid: {p : 100, i : 0.1 , d : 10}
+
+    back_left_controller:
+        type: velocity_controllers/JointVelocityController
+        joint: back_left_wheel_joint
+        pid: {p : 100, i : 0.1 , d : 10}
+
+    back_right_controller:
+        type: velocity_controllers/JointVelocityController
+        joint: back_right_wheel_joint
+        pid: {p : 100, i : 0.1 , d : 10}

@@ -1,0 +1,8 @@
+<launch>
+    <include file="$(find catbot_control)/launch/four-wheeled-drive-catbot-kinematics.launch" />
+    <node name="ground_truth_pose_generator" pkg="catbot_localization" type = "ground_truth_pose_generator" ns="/catbot" />
+    <node name="ground_truth_path_generator" pkg="catbot_localization" type = "ground_truth_path_generator" ns="/catbot" />
+    <node name="odometry_pose_generator" pkg="catbot_localization" type = "odometry_pose_generator" ns="/catbot" />
+    <node name="odometry_path_generator" pkg="catbot_localization" type = "odometry_path_generator" ns="/catbot" />
+    <node name="ground_truth" pkg="catbot_localization" type="ground_truth" output="screen" ns ="/catbot" />
+</launch>

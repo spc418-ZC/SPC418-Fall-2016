@@ -26,10 +26,10 @@ include_directories(
 add_executable(teleop_node src/teleop/catbot_teleop.cpp)
 add_executable(kinematic_model src/kinematics/kinematic_model.cpp)
 add_executable(encoder src/diff_catbot_encoder.cpp)
-add_executable(fourWD_controller src/4WD_control.cpp)
+add_executable(four_wheeled_teleop src/kinematics/four-wheeled-teleop.cpp)
 
 # Link libraries to executables
 target_link_libraries(teleop_node ${catkin_LIBRARIES})
 target_link_libraries(kinematic_model ${catkin_LIBRARIES})
 target_link_libraries(encoder ${catkin_LIBRARIES})
-target_link_libraries(fourWD_controller ${catkin_LIBRARIES})
+target_link_libraries(four_wheeled_teleop ${catkin_LIBRARIES})

@@ -16,11 +16,13 @@ PublisherSubscriber<geometry_msgs::PoseStamped,sensor_msgs::JointState>::Publish
 class PoseGenerator : protected PublisherSubscriber<geometry_msgs::PoseStamped,sensor_msgs::JointState>
 {
 public:
-  PoseGenerator(std::string publishTopicName, std::string subscribeTopicName, int queueSize, std::string frame_name)
+  PoseGenerator(std::string publishTopicName, std::string subscribeTopicName, int queueSize, std::string frame_name, std::string right_wheel_name, std::string left_wheel_name)
   {
     publisherObject  = nH.advertise<geometry_msgs::PoseStamped>(publishTopicName,queueSize);
     subscriberObject = nH.subscribe<sensor_msgs::JointState>(subscribeTopicName,queueSize,&PoseGenerator::subscriberCallback,this);
     frame_id         = frame_name;
+    left_wheel       = left_wheel_name;
+    right_wheel      = right_wheel_name;
   }
 
   void subscriberCallback(const sensor_msgs::JointState::ConstPtr& recievedMsg)
@@ -35,11 +37,11 @@ public:
 
     for(size_t k = 0; k <  2; k++)
     {
-      if (recievedMsg -> name[k] == "left_motor")
+      if (recievedMsg -> name[k] == left_wheel)
       {
         left_wheel_velocity  = recievedMsg -> velocity[k];
       }
-      else if (recievedMsg -> name[k] == "right_motor")
+      else if (recievedMsg -> name[k] == right_wheel)
       {
         right_wheel_velocity = recievedMsg -> velocity[k];
       }
@@ -72,6 +74,7 @@ public:
   }
 protected:
   std::string frame_id;
+  std::string left_wheel, right_wheel;
 };
 
 #endif // JOINTSTATETOPOSESTAMPED_H

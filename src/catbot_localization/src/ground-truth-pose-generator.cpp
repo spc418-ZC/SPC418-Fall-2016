@@ -4,6 +4,6 @@ int main(int argc, char **argv)
 {
   // Set up ROS.
   ros::init(argc, argv, "ground-truth-pose-generator");
-  PoseGenerator posegenerator("/catbot/ground_truth_pose","/gazebo/model_states",1,"world");
+  PoseGenerator posegenerator("ground_truth_pose","/gazebo/model_states",1,"world","catbot");
   ros::spin();
 }
