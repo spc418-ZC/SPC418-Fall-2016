@@ -8,6 +8,7 @@ find_package(catkin REQUIRED COMPONENTS
   roscpp std_msgs sensor_msgs nav_msgs tf
 )
 
+SET(CMAKE_CXX_FLAGS "-std=gnu++11")
 # Configuring the package to resolve any package dependencies of packages that depend on this package
 catkin_package(
    INCLUDE_DIRS include
@@ -27,9 +28,10 @@ add_executable(teleop_node src/teleop/catbot_teleop.cpp)
 add_executable(kinematic_model src/kinematics/kinematic_model.cpp)
 add_executable(encoder src/diff_catbot_encoder.cpp)
 add_executable(four_wheeled_teleop src/kinematics/four-wheeled-teleop.cpp)
-
+add_executable(umbmark src/UMBmark_calibration.cpp)
 # Link libraries to executables
 target_link_libraries(teleop_node ${catkin_LIBRARIES})
 target_link_libraries(kinematic_model ${catkin_LIBRARIES})
 target_link_libraries(encoder ${catkin_LIBRARIES})
 target_link_libraries(four_wheeled_teleop ${catkin_LIBRARIES})
+target_link_libraries(umbmark ${catkin_LIBRARIES})

@@ -1,29 +1,30 @@
 <launch>
         <arg name="rviz_gui" default="False" />
-        <arg name="paused" default="false"/>
-        <arg name="use_sim_time" default="true"/>
-        <arg name="gazebo_gui" default="true"/>
-        <arg name="headless" default="false"/>
-        <arg name="debug" default="false"/>
+	<arg name="paused" default="false"/>
+	<arg name="use_sim_time" default="true"/>
+	<arg name="gazebo_gui" default="true"/>
+	<arg name="headless" default="false"/>
+	<arg name="debug" default="false"/>
 
         <param name="robot_description" textfile="$(find catbot_description)/urdf/diff_catbot_perception.urdf"/>
-        <param name="use_gui" value="$(arg rviz_gui)" />
+	<param name="use_gui" value="$(arg rviz_gui)" />
 
         <rosparam file="$(find catbot_control)/config/diff_catbot_kinematics.yaml" command="load"/>
-        <include file="$(find catbot_localization)/launch/catbot_world.launch" />
+	<include file="$(find gazebo_ros)/launch/empty_world.launch" />
 
         <node name="spawn_model" pkg="gazebo_ros" type="spawn_model" args="-param robot_description -urdf -model catbot -z 0.13" output="screen" />
-        <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false" output="screen" ns="/catbot"
-            args= "left_motor_controller right_motor_controller joint_state_controller"/>
-        <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" respawn="false" output="screen">
-                <remap from="/joint_states" to="/catbot/joint_states" />
-        </node>
-        <node name="rviz" pkg="rviz" type="rviz" args="-d $(find catbot_localization)/rviz/encoder_world_config.rviz" />
+	<node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false" output="screen" ns="/catbot"
+	    args= "left_motor_controller right_motor_controller joint_state_controller"/>
+	<node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" respawn="false" output="screen">
+	        <remap from="/joint_states" to="/catbot/joint_states" />
+		</node>
+	<node name="rviz" pkg="rviz" type="rviz" args="-d $(find catbot_localization)/rviz/encoder_world_config.rviz" />
 	<node name="kinematic_model_teleop" pkg="catbot_control" type="kinematic_model" output="screen" ns="/catbot"/>
 	<node name="ground_truth" pkg="catbot_localization" type="ground_truth" output="screen" ns="/catbot"/>
 	<node name="ground_truth_pose_generator" pkg="catbot_localization" type = "ground_truth_pose_generator" ns="/catbot"/>
 	<node name="ground_truth_path_generator" pkg="catbot_localization" type = "ground_truth_path_generator" ns="/catbot"/>
 	<node name="odometry_pose_generator" pkg="catbot_localization" type = "odometry_pose_generator" ns="/catbot"/>
 	<node name="odometry_path_generator" pkg="catbot_localization" type = "odometry_path_generator" ns="/catbot"/>
-	<node name="umbmark" pkg="catbot_control" type="umbmark" ns="/catbot" />
+	<node name="umbmark" pkg="catbot_control" type="umbmark" ns="/catbot" output = "screen"/>
+	<node name="rqt_plot" pkg="rqt_plot" type="rqt_plot" />
 </launch>
