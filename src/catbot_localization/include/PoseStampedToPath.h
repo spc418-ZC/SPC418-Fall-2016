@@ -26,7 +26,7 @@ public:
     poseMsg.header          = receivedMsg->header;
 
     const geometry_msgs::PoseStamped constPoseMsg = poseMsg;
-    if (pathMsg.poses.size() < 5000)
+    if (pathMsg.poses.size() < 500000)
     {
       pathMsg.poses.push_back(constPoseMsg);
     }

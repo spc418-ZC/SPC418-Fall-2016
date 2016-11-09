@@ -10,7 +10,7 @@
         <param name="use_gui" value="$(arg rviz_gui)" />
 
         <rosparam file="$(find catbot_control)/config/diff_catbot_kinematics.yaml" command="load"/>
-        <include file="$(find catbot_localization)/launch/catbot_world.launch" />
+	<include file="$(find gazebo_ros)/launch/empty_world.launch" />
 
         <node name="spawn_model" pkg="gazebo_ros" type="spawn_model" args="-param robot_description -urdf -model catbot -z 0.13" output="screen" />
         <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false" output="screen" ns="/catbot"
@@ -25,5 +25,4 @@
 	<node name="ground_truth_path_generator" pkg="catbot_localization" type = "ground_truth_path_generator" ns="/catbot"/>
 	<node name="odometry_pose_generator" pkg="catbot_localization" type = "odometry_pose_generator" ns="/catbot"/>
 	<node name="odometry_path_generator" pkg="catbot_localization" type = "odometry_path_generator" ns="/catbot"/>
-	<node name="umbmark" pkg="catbot_control" type="umbmark" ns="/catbot" />
 </launch>

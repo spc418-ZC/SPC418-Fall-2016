@@ -8,7 +8,7 @@
 
 
 double wheel_separation = 0.3159;
-double wheel_diameter   = 0.10;
+double wheel_diameter   = 0.10 * 0.763/0.87;
 
 template<>
 PublisherSubscriber<geometry_msgs::PoseStamped,sensor_msgs::JointState>::PublisherSubscriber() {}
@@ -29,7 +29,7 @@ public:
   {
     geometry_msgs::PoseStamped poseMsg;
     double left_wheel_velocity = 0, right_wheel_velocity = 0;
-    double dtheta = 0, dx = 0, dy = 0, w = 0, dt;
+    double dtheta = 0, dx = 0, dy = 0,dt;
 
     static double x = 0, y = 0, theta = 0;
 
