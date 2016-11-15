@@ -348,7 +348,6 @@
                 </sensor>
         </gazebo>
 
-
         <gazebo>
 	    <plugin name="imu_controller" filename="libhector_gazebo_ros_imu.so">
                 <alwaysOn>true</alwaysOn>
