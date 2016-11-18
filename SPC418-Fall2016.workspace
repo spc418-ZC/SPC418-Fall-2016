@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<Workspace>
+    <WatchDirectories>
+        <Directory>src</Directory>
+    </WatchDirectories>
+    <IncludePaths>
+        <Directory>/home/mahmoud/ROS-Workspaces/SPC418-Fall-2016/src/viso2/libviso2/libviso2/src</Directory>
+        <Directory>/home/mahmoud/ROS-Workspaces/SPC418-Fall-2016/devel/include</Directory>
+        <Directory>/home/mahmoud/ROS-Workspaces/SPC418-Fall-2016/src/assignments/assignment_2/include</Directory>
+        <Directory>/home/mahmoud/ROS-Workspaces/SPC418-Fall-2016/src/catbot_control/include</Directory>
+        <Directory>/home/mahmoud/ROS-Workspaces/SPC418-Fall-2016/src/catbot_localization/include</Directory>
+        <Directory>/home/mahmoud/ROS-Workspaces/SPC418-Fall-2016/src/viso2/viso2_ros/src</Directory>
+        <Directory>/home/mahmoud/ROS-Workspaces/SPC418-Fall-2016/src/catbot_description/urdf/include</Directory>
+        <Directory>/usr/src/gtest</Directory>
+        <Directory>/usr/src/gtest/include</Directory>
+        <Directory>/opt/ros/kinetic/include</Directory>
+        <Directory>/opt/ros/kinetic/include/opencv-3.1.0-dev</Directory>
+        <Directory>/opt/ros/kinetic/include/opencv-3.1.0-dev/opencv</Directory>
+        <Directory>/usr/include/eigen3</Directory>
+        <Directory>/usr/include/freetype2</Directory>
+        <Directory>/usr/include/hdf5/openmpi</Directory>
+        <Directory>/usr/include/jsoncpp</Directory>
+        <Directory>/usr/include/libxml2</Directory>
+        <Directory>/usr/include/ni</Directory>
+        <Directory>/usr/include/pcl-1.7</Directory>
+        <Directory>/usr/include/python2.7</Directory>
+        <Directory>/usr/include/tcl</Directory>
+        <Directory>/usr/include/vtk-6.2</Directory>
+        <Directory>/usr/include/x86_64-linux-gnu</Directory>
+        <Directory>/usr/include/x86_64-linux-gnu/freetype2</Directory>
+        <Directory>/usr/lib/openmpi/include</Directory>
+        <Directory>/usr/lib/openmpi/include/openmpi</Directory>
+        <Directory>/usr/lib/openmpi/include/openmpi/opal/mca/event/libevent2021/libevent</Directory>
+        <Directory>/usr/lib/openmpi/include/openmpi/opal/mca/event/libevent2021/libevent/include</Directory>
+    </IncludePaths>
+</Workspace>
