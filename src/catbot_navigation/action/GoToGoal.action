@@ -1,0 +1,12 @@
+#Definition of Goal Message
+
+float64 x_pos
+float64 y_pos
+float64 theta
+---
+#Definition of Result Message
+bool targetReached
+---
+float64 err_x
+float64 err_y
+float64 e_psi

@@ -1,0 +1,12 @@
+<launch>
+    <arg   name="gui" default="False" />
+    <param name="robot_description" textfile="$(find catbot_description)/urdf/diff_catbot_full.urdf"/>
+    <param name="use_gui" value="true" />
+    <node  name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" respawn="false" output="screen" ns="catbot">
+	<param name="publish_frequency" type="double" value="50.0" />
+    </node>
+    <node  name="rviz" pkg="rviz" type="rviz"/>
+    <include file="$(find gazebo_ros)/launch/empty_world.launch" />
+    <node    name="spawn_model" pkg="gazebo_ros" type="spawn_model" args="-param robot_description -urdf -model diff_catbot" output="screen" />
+    <node  name="catbotGoToGoal" pkg="catbot_navigation" type="catbotGoToGoal" ns="catbot" output="screen" />
+</launch>

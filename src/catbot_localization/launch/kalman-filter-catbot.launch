@@ -1,0 +1,17 @@
+<launch>
+    <arg   name="gui" default="False" />
+    <param name="robot_description" textfile="$(find catbot_description)/urdf/diff_catbot_full.urdf"/>
+    <param name="use_gui" value="true" />
+    <node  name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" respawn="false" output="screen">
+	<param name="publish_frequency" type="double" value="50.0" />
+	<remap from="/joint_states" to="/catbot/joint_states" />
+    </node>
+    <node  name="rviz" pkg="rviz" type="rviz"/>
+    <include file="$(find gazebo_ros)/launch/empty_world.launch" />
+    <node  name="spawn_model" pkg="gazebo_ros" type="spawn_model" args="-param robot_description -urdf -model catbot" output="screen" />
+    <node  name="imu_server_node" pkg="catbot_localization" type="imu_server_node" ns="catbot"/>
+    <node  name="kalman_filter_node" pkg="catbot_localization" type="kalman_filter_node" ns="catbot" output="screen"/>
+    <node name="imu_node" pkg="assignment_2" type="imu_node" output="screen" ns="catbot" />
+    <node name="kinematic_model" pkg="catbot_control" type="kinematic_model" ns="catbot" />
+    <node name="ground_truth" pkg="catbot_localization" type="ground_truth" ns="catbot" />
+</launch>

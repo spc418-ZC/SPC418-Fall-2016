@@ -6,6 +6,7 @@
 #include <termios.h>
 #include <sys/select.h>
 #include <sys/types.h>
+#include <geometry_msgs/Twist.h>
 
 using std::cout;
 using std::endl;
@@ -39,9 +40,9 @@ int main(int argc, char **argv)
   ros::init(argc, argv, "kinematic_model");
   ros::NodeHandle DiffDriveNode;
 
-  ros::Publisher RightMotorCMD = DiffDriveNode.advertise<std_msgs::Float64>("/catbot/right_motor_controller/command",10);
-  ros::Publisher LeftMotorCMD  = DiffDriveNode.advertise<std_msgs::Float64>("/catbot/left_motor_controller/command",10);
-
+  ros::Publisher RightMotorCMD = DiffDriveNode.advertise<std_msgs::Float64>("right_motor_controller/command",10);
+  ros::Publisher LeftMotorCMD  = DiffDriveNode.advertise<std_msgs::Float64>("left_motor_controller/command",10);
+  ros::Publisher cmd_VelTopic  = DiffDriveNode.advertise<geometry_msgs::Twist>("velocity_command",10);
   ros::Rate rate_controller(30);
 
   while(ros::ok())
@@ -191,7 +192,11 @@ int main(int argc, char **argv)
 
     RightMotorCMD.publish(right_wheel_vel);
     LeftMotorCMD.publish(left_wheel_vel);
+	geometry_msgs::Twist vel_command;
+	vel_command.linear.x = nominal_linear_vel;
+	vel_command.angular.z = nominal_angular_vel;
 
+	cmd_VelTopic.publish(vel_command);
     rate_controller.sleep();
   }
   return 0;

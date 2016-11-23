@@ -255,24 +255,24 @@
 
         <gazebo><!-- Loading gazebo-differential_drive plugin to control the vehicle using velocity commands -->
             <plugin name="differential_drive_controller" filename="libgazebo_ros_diff_drive.so">
+		    <robotNamespace>catbot</robotNamespace>
                     <alwaysOn>true</alwaysOn>
-                    <robotNamespace>catbot</robotNamespace>
-                    <updateRate>20</updateRate>
-                    <publishTf>true</publishTf>
+		    <updateRate>50</updateRate>
+		    <publishTf>true</publishTf>
                     <leftJoint>left_motor</leftJoint>
                     <rightJoint>right_motor</rightJoint>
-                    <wheelSeparation>0.32</wheelSeparation>
-                    <publishWheelTF>true</publishWheelTF>
+		    <wheelSeparation>0.3195</wheelSeparation>
+		    <publishWheelTF>true</publishWheelTF>
                     <publishWheelJointState>true</publishWheelJointState>
                     <legacyMode>false</legacyMode>
                     <wheelAcceleration>9</wheelAcceleration>
-                    <wheelDiameter>0.92</wheelDiameter>
+		    <wheelDiameter>0.1912</wheelDiameter>
                     <wheelTorque>30</wheelTorque>
-                    <odometrySource>encoder</odometrySource>
+		    <odometrySource>world</odometrySource>
                     <commandTopic>velocity_command</commandTopic>
                     <odometryTopic>odometry</odometryTopic>
-                    <odometryFrame>odometry_frame</odometryFrame>
-                    <robotBaseFrame>base_footprint</robotBaseFrame>
+		    <odometryFrame>/odometry_frame</odometryFrame>
+		    <robotBaseFrame>/base_footprint</robotBaseFrame>
             </plugin>
         </gazebo>
         <gazebo reference = "camera" >
@@ -367,7 +367,7 @@
         <gazebo>
 	    <plugin name="imu_controller" filename="libhector_gazebo_ros_imu.so">
                 <alwaysOn>true</alwaysOn>
-                <robotNamespace>catbot</robotNamespace>
+		<robotNamespace>catbot</robotNamespace>
 		<updateRate>100.0</updateRate>
                 <bodyName>base_footprint</bodyName>
                 <topicName>imu_data</topicName>

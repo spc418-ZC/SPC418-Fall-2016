@@ -51,12 +51,12 @@ void PublisherSubscriber<nav_msgs::Odometry,gazebo_msgs::ModelStates>::subscribe
   const ros::Time current_time = ros::Time::now();
   const tf::Transform base_footprint_to_world( qt, vt );
 
-  tf_br.sendTransform(tf::StampedTransform(base_footprint_to_world,current_time,"world","base_footprint"));
+  tf_br.sendTransform(tf::StampedTransform(base_footprint_to_world.inverse(),current_time,"base_footprint","world"));
 
   std_msgs::Header headerMsg;
   headerMsg.seq      = seq;
   headerMsg.stamp    = ros::Time::now();
-  headerMsg.frame_id = "world";
+  headerMsg.frame_id = "base_footprint";
 
   nav_msgs::Odometry odomMsg;
 
@@ -65,7 +65,7 @@ void PublisherSubscriber<nav_msgs::Odometry,gazebo_msgs::ModelStates>::subscribe
   odomMsg.twist.twist      = twistMsg;
   odomMsg.twist.covariance = cov;
   odomMsg.header           = headerMsg;
-  odomMsg.child_frame_id   = "base_footprint";
+  odomMsg.child_frame_id   = "world";
 
   publisherObject.publish(odomMsg);
   seq++;
