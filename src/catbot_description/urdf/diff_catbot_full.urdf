@@ -254,21 +254,21 @@
         </gazebo>
 
         <gazebo><!-- Loading gazebo-differential_drive plugin to control the vehicle using velocity commands -->
-            <plugin name="differential_drive_controller" filename="libgazebo_ros_diff_drive.so">
+	    <plugin name="differential_drive_controller" filename="libgazebo_ros_diff_drive.so">
 		    <robotNamespace>catbot</robotNamespace>
                     <alwaysOn>true</alwaysOn>
 		    <updateRate>50</updateRate>
 		    <publishTf>true</publishTf>
                     <leftJoint>left_motor</leftJoint>
                     <rightJoint>right_motor</rightJoint>
-		    <wheelSeparation>0.3195</wheelSeparation>
+		    <wheelSeparation>0.3085</wheelSeparation>
 		    <publishWheelTF>true</publishWheelTF>
-                    <publishWheelJointState>true</publishWheelJointState>
+		    <publishWheelJointState>true</publishWheelJointState>
                     <legacyMode>false</legacyMode>
                     <wheelAcceleration>9</wheelAcceleration>
-		    <wheelDiameter>0.1912</wheelDiameter>
+		    <wheelDiameter>0.1882</wheelDiameter>
                     <wheelTorque>30</wheelTorque>
-		    <odometrySource>world</odometrySource>
+		    <odometrySource>encoder</odometrySource>
                     <commandTopic>velocity_command</commandTopic>
                     <odometryTopic>odometry</odometryTopic>
 		    <odometryFrame>/odometry_frame</odometryFrame>

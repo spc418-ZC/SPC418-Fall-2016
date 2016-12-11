@@ -9,9 +9,6 @@ double bi = 1/0.3195;
 using std::cout;
 using std::endl;
 
-std::default_random_engine generator;
-std::normal_distribution<double> distribution(0,0.0625);
-
 void KalmanFilter::recursiveUpdate(const sensor_msgs::JointState::ConstPtr &odometryMsg)
 {
 	static double left_wheel_position = 0, right_wheel_position = 0, prev_right_wheel_position, prev_left_wheel_position ;
@@ -134,8 +131,8 @@ Eigen::Matrix2d KalmanFilter::getCovarianceInput(double ds_r, double ds_l)
 {
 	Eigen::Matrix2d s_u(2,2);
 
-	s_u(0,0) = 0.001*ds_r;	s_u(0,1) = 0		 ;
-	s_u(1,0) = 0		 ;  s_u(1,1) = 0.001*ds_l;
+	s_u(0,0) = 0.01*ds_r;	s_u(0,1) = 0		 ;
+	s_u(1,0) = 0		 ;  s_u(1,1) = 0.01*ds_l;
 
 	return s_u;
 }
@@ -147,9 +144,9 @@ void KalmanFilter::initializeFilter(std::string publishTopicName, std::string su
 	imuClient		   = nodeHandle.serviceClient<catbot_localization::getIMU>(imuServiceName);
 	updatedStates	   = Eigen::Vector3d(0,0,0);
 
-	positionCovariance(0,0) = 0.1; positionCovariance(0,1) = 0; positionCovariance(0,2) = 0;
-	positionCovariance(1,0) = 0; positionCovariance(1,1) = 0.1; positionCovariance(1,2) = 0;
-	positionCovariance(2,0) = 0; positionCovariance(2,1) = 0; positionCovariance(2,2) = 0.1;
+	positionCovariance(0,0) = 0.0001; positionCovariance(0,1) = 0; positionCovariance(0,2) = 0;
+	positionCovariance(1,0) = 0; positionCovariance(1,1) = 0.0001; positionCovariance(1,2) = 0;
+	positionCovariance(2,0) = 0; positionCovariance(2,1) = 0; positionCovariance(2,2) = 0.0001;
 
 	measurementCovariance(0,0) = 0.0625; measurementCovariance(0,1) = 0; measurementCovariance(0,2) = 0;
 	measurementCovariance(1,0) = 0; measurementCovariance(1,1) = 0.0625; measurementCovariance(1,2) = 0;

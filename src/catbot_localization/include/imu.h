@@ -11,7 +11,7 @@
 #include <tf/transform_broadcaster.h>
 
 std::default_random_engine generator;
-std::normal_distribution<double> distribution(0,0.0625);
+std::normal_distribution<double> distribution(0,0.00625);
 
 class IMU
 {
@@ -59,8 +59,8 @@ public:
     vx  += ((fabs(accInertial.x()) > 1e-3)? accInertial.x() : 0) * dt;
     vy  += ((fabs(accInertial.y()) > 1e-3)? accInertial.y() : 0) * dt;
 
-    x   += ((fabs(vx) > 1e-4)? vx : 0) * dt;
-    y   += ((fabs(vy) > 1e-4)? vy : 0) * dt;
+	x   += ((fabs(vx) > 1e-4)? vx : 0) * dt;
+	y   += ((fabs(vy) > 1e-4)? vy : 0) * dt;
 
     theta = orientation.getAngle();
     w     = angVelInertial.getZ();

@@ -30,7 +30,7 @@ class KalmanFilter
 		tf::TransformBroadcaster	tf_br;
 	public:
 		void recursiveUpdate(const sensor_msgs::JointState::ConstPtr& odometryMsg);
-		void initializeFilter(std::__cxx11::string publishTopicName, std::__cxx11::string subscribeTopicName, std::__cxx11::string imuServiceName);
+		void initializeFilter(std::string publishTopicName, std::string subscribeTopicName, std::string imuServiceName);
 		void getPoseIMU();
 		void updateStates();
 		void publishStates();
