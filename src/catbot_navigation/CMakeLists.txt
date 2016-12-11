@@ -29,6 +29,9 @@ add_dependencies(GoToGoalController ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin
 
 add_executable(catbotGoToGoal src/go-to-goal.cpp)
 target_link_libraries(catbotGoToGoal GoToGoalController ${catkin_LIBRARIES})
+add_dependencies(catbotGoToGoal ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 
 add_executable(catbotGoToGoalClient src/go-to-goal-client.cpp)
 target_link_libraries(catbotGoToGoalClient ${catkin_LIBRARIES})
+add_dependencies(catbotGoToGoalClient ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+
