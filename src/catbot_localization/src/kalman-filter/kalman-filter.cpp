@@ -54,7 +54,7 @@ void KalmanFilter::recursiveUpdate(const sensor_msgs::JointState::ConstPtr &odom
 	inputCovariance		= getCovarianceInput(fabs(ds_r),fabs(ds_l));
 
 	predictedCovariance = f_p * positionCovariance * f_p.transpose() + f_d * inputCovariance * f_d.transpose();
-	KalmanGain			= predictedCovariance * Eigen::Inverse<Eigen::Matrix3d>(predictedCovariance + measurementCovariance);
+	KalmanGain			= predictedCovariance * (predictedCovariance + measurementCovariance).inverse();
 
 	updatedStates =  predictedStates + KalmanGain * (observation - predictedStates);
 	positionCovariance	= predictedCovariance  - KalmanGain * predictedCovariance;

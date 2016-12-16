@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<package>
+  <name>assignment_3</name>
+  <version>0.1.0</version>
+  <description>Solution to the programming exercise in assignment 3</description>
+  <maintainer email="Galil@todo.todo">Mahmoud Abdul Galil</maintainer>
+  <license>Apache 2.0</license>
+  <author >Mahmoud Abdul Galil</author>
+  <buildtool_depend>catkin</buildtool_depend>
+  <build_depend>roscpp</build_depend>
+  <run_depend>roscpp</run_depend>
+  <build_depend>geometry_msgs</build_depend>
+  <run_depend>geometry_msgs</run_depend>
+  <build_depend>std_msgs</build_depend>
+  <run_depend>std_msgs</run_depend>
+  <run_depend>catbot_localization</run_depend>
+  <run_depend>catbot_description</run_depend>
+  <run_depend>catbot_navigation</run_depend>
+  <run_depend>catbot_control</run_depend>
+</package>
